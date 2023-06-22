@@ -23,9 +23,10 @@ const Product = ({productData}) => {
             <p className='text-gray text-left my-4 mx-5 text-base font-medium '>{productData.price}</p>
             <div className=' flex justify-between items-center mt-9 mx-5 mb-5 '>
                 <Link className='no-underline text-blue text-base' to={`/products/${productData.id}`}>Details</Link>
-                <div className='buttonContainer'>
+                <div className='buttonContainer flex'>
                     {quantityCount(state, productData.id) > 1 && <button className='w-8 text-lg font-bold ' onClick={() => dispatch({type: "DECREASE", payload: productData})}>-</button>}
                     {quantityCount(state, productData.id) === 1 && <button className='w-8 text-lg font-bold ' onClick={() => dispatch({type: "REMOVE_ITEM", payload: productData})}><img src={trashIcon} alt="trash" className='w-5' /></button>}
+                    {quantityCount(state, productData.id) > 0 && <span className='inline-block w-5 ml-1.5 text-xl font-bold text-[#1a73e8]'>{quantityCount(state, productData.id)}</span>}
                     {
                         isInCart(state, productData.id) ?
                         <button className='w-8 text-lg font-bold ' onClick={() => dispatch({type:"INCREASE", payload: productData})}>+</button> :
